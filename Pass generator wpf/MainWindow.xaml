@@ -1,0 +1,37 @@
+﻿<Window x:Class="Pass_generator_wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pass_generator_wpf" xmlns:viewmodels="clr-namespace:Pass_generator_wpf.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center"  VerticalAlignment="Center">
+            <Label Content="Довжина:" FontSize="15" />
+            <TextBox d:Text="" Text="{Binding Path=Length,UpdateSourceTrigger=PropertyChanged}" />
+            <Label Content="4-32 символи" FontSize="11" />
+            <Label Content="Генерувати з символів:" FontSize="15"/>
+            <TextBox d:Text=""  Text="{Binding Path=AddSymbols,UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <CheckBox IsChecked ="{Binding Path=NumbersCheck}" Content="Цифри" FontSize="20" />
+            <CheckBox IsChecked ="{Binding Path=SmallLettersCheck}" Content="Малі букви" FontSize="20" />
+            <CheckBox IsChecked ="{Binding Path=LargeLettersCheck}" Content="Великі букви"  FontSize="20" />
+            <CheckBox IsChecked ="{Binding Path=SymbolsCheck}" Content="Символи" FontSize="20"  />
+            <Button Command="{Binding Path=Generate}"  Background="LightGreen" FontFamily="Microsoft sans serif" Height="36" Width="157">Генерувати</Button>
+        </StackPanel>
+        <Button Command="{Binding Path= Save}" Content="Зберегти" HorizontalAlignment="Center" Background="LightGreen" FontFamily="Microsoft sans serif" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Width="79" Height="35" />
+        <Button Command="{Binding Path=Copy}" Content="Копіювати" HorizontalAlignment="Center" Background="LightGreen" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" FontFamily="Microsoft sans serif"  Width="111" Height="43"/>
+        <ListBox SelectedItem="{Binding Path=Selected}" ItemsSource="{Binding Path = Passwords}" Grid.Column="2" Grid.RowSpan="2" Background="LightGray" Foreground="Black"></ListBox>
+    </Grid>
+</Window>
